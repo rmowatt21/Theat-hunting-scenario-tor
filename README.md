@@ -126,7 +126,7 @@ DeviceNetworkEvents
 ### 4. Network Connection - TOR Network
 
 - **Timestamp:** `2025-04-08T18:21:52.3744615Z`
-- **Event:** A network connection to IP `176.198.159.33` on port `9001` by user "employee" was established using `tor.exe`, confirming TOR browser network activity.
+- **Event:** A network connection to IP `176.198.159.33` on port `9001` by user "azurelab" was established using `tor.exe`, confirming TOR browser network activity.
 - **Action:** Connection success.
 - **Process:** `tor.exe`
 - **File Path:** `C:\Users\azurelab\Desktop\Tor Browser\Browser\TorBrowser\Tor\tor.exe`
@@ -142,7 +142,7 @@ DeviceNetworkEvents
 ### 6. File Creation - TOR Shopping List
 
 - **Timestamp:** `2025-04-08T19:18:41.9897782Z`
-- **Event:** The user "employee" created a file named `tor-shopping-list.txt` on the desktop, potentially indicating a list or notes related to their TOR browser activities.
+- **Event:** The user "azurelab" created a file named `tor-shopping-list.txt` on the desktop, potentially indicating a list or notes related to their TOR browser activities.
 - **Action:** File creation detected.
 - **File Path:** `C:\Users\azurelab\Desktop\tor-shopping-list.txt`
 
