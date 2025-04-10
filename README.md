@@ -41,31 +41,30 @@ DeviceFileEvents
 ```
 ![image](https://github.com/user-attachments/assets/5907a04d-0469-41b0-ac56-5240f837dd0b)
 
-
-
 ---
 
 ### 2. Searched the `DeviceProcessEvents` Table
 
-Searched on the DeviceName `network-vm-slow` in the FileName 'tor', 'tor.exe'. Based on the logs returned, at `2024-11-08T22:16:47.4484567Z`, an employee on the "threat-hunt-lab" device ran the file `tor-browser-windows-x86_64-portable-14.0.1.exe` from their Downloads folder, using a command that triggered a silent installation.
+Searched on the DeviceName `tor-network` in the FileName 'tor', 'tor.exe'. Based on the logs returned, at `2025-04-08T18:20:49.4108717Z`, a user on the `tor-network` device ran the file `tor-browser-windows-x86_64-portable-14.0.9.exe` from their Downloads folder, using a command that triggered a silent installation.
 
 **Query used to locate event:**
 
 ```kql
 
 DeviceProcessEvents 
-| where DeviceName == "network-vm-slow"
-| where FileName in ("tor", "tor.exe")
+| where DeviceName == "tor-network"
+| where AccountName == "azurelab"
+| where ProcessCommandLine contains "" "tor-browser-windows-x86_64-portable-14.0.9.exe"
 | project Timestamp, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine
 ```
-![image](https://github.com/user-attachments/assets/5d9c3ece-92f8-4c92-b495-84f2ec397405)
+![image](https://github.com/user-attachments/assets/180b3ca1-5482-41cd-bb5e-50637da15d67)
 
 
 ---
 
 ### 3. Searched the `DeviceProcessEvents` Table for TOR Browser Execution
 
-Searched for any indication that user "user" actually opened the TOR browser. There was evidence that they did open it at `2025-03-27T14:38:25.8805564Z`. There were several other instances of `firefox.exe` (TOR) as well as `tor.exe` spawned afterwards.
+Searched for any indication that user 'azurelab' actually opened the TOR browser. There was evidence that they did open it at `2025-04-08T18:20:49.4108717Z`. There were several other instances of `firefox.exe` (TOR) as well as `tor.exe` spawned afterwards.
 
 **Query used to locate events:**
 
@@ -76,7 +75,8 @@ DeviceProcessEvents
 | project Timestamp, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine
 | order by Timestamp desc 
 ```
-<![image](https://github.com/user-attachments/assets/988172ac-4eed-4741-baed-7c23933c180a)">
+![image](https://github.com/user-attachments/assets/120c69de-b493-4a54-a87c-0e2a2cb94fbf)
+
 
 ---
 
