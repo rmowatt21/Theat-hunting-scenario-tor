@@ -70,13 +70,12 @@ Searched for any indication that user 'azurelab' actually opened the TOR browser
 
 ```kql
 DeviceProcessEvents 
-| where DeviceName == "network-vm-slow"
+| where DeviceName == "tor-network"
 | where FileName in ("tor", "tor.exe", "firefox.exe")
 | project Timestamp, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine
 | order by Timestamp desc 
 ```
-![image](https://github.com/user-attachments/assets/120c69de-b493-4a54-a87c-0e2a2cb94fbf)
-
+![image](https://github.com/user-attachments/assets/cd53dfcb-edff-4e7c-903d-36f1d47f26e9)
 
 ---
 
@@ -88,14 +87,15 @@ Searched for any indication the TOR browser was used to establish a connection u
 
 ```kql
 DeviceNetworkEvents  
-| where DeviceName == "threat-hunt-lab"  
+| where DeviceName == "tor-network"  
 | where InitiatingProcessAccountName != "system"  
 | where InitiatingProcessFileName in ("tor.exe", "firefox.exe")  
 | where RemotePort in ("9001", "9030", "9040", "9050", "9051", "9150", "80", "443")  
 | project Timestamp, DeviceName, InitiatingProcessAccountName, ActionType, RemoteIP, RemotePort, RemoteUrl, InitiatingProcessFileName, InitiatingProcessFolderPath  
 | order by Timestamp desc
 ```
-<img width="1212" alt="image" src="https://github.com/user-attachments/assets/87a02b5b-7d12-4f53-9255-f5e750d0e3cb">
+![image](https://github.com/user-attachments/assets/37039734-2189-4f88-bcf3-1f02b8435d41)
+
 
 ---
 
@@ -103,33 +103,33 @@ DeviceNetworkEvents
 
 ### 1. File Download - TOR Installer
 
-- **Timestamp:** `2024-11-08T22:14:48.6065231Z`
-- **Event:** The user "employee" downloaded a file named `tor-browser-windows-x86_64-portable-14.0.1.exe` to the Downloads folder.
+- **Timestamp:** `2025-04-08T18:21:52.3744615Z`
+- **Event:** The user "azurelab" downloaded a file named `tor-browser-windows-x86_64-portable-14.0.9.exe` to the Downloads folder.
 - **Action:** File download detected.
-- **File Path:** `C:\Users\employee\Downloads\tor-browser-windows-x86_64-portable-14.0.1.exe`
+- **File Path:** `C:\Users\azurelab\Downloads\tor-browser-windows-x86_64-portable-14.0.9.exe`
 
 ### 2. Process Execution - TOR Browser Installation
 
-- **Timestamp:** `2024-11-08T22:16:47.4484567Z`
-- **Event:** The user "employee" executed the file `tor-browser-windows-x86_64-portable-14.0.1.exe` in silent mode, initiating a background installation of the TOR Browser.
+- **Timestamp:** `2025-04-08T18:21:52.3744615Z`
+- **Event:** The user "azurelab" executed the file `tor-browser-windows-x86_64-portable-14.0.9.exe` in silent mode, initiating a background installation of the TOR Browser.
 - **Action:** Process creation detected.
-- **Command:** `tor-browser-windows-x86_64-portable-14.0.1.exe /S`
-- **File Path:** `C:\Users\employee\Downloads\tor-browser-windows-x86_64-portable-14.0.1.exe`
+- **Command:** `tor-browser-windows-x86_64-portable-14.0.9.exe /S`
+- **File Path:** `C:\Users\azurelab\Downloads\tor-browser-windows-x86_64-portable-14.0.9.exe`
 
 ### 3. Process Execution - TOR Browser Launch
 
-- **Timestamp:** `2024-11-08T22:17:21.6357935Z`
-- **Event:** User "employee" opened the TOR browser. Subsequent processes associated with TOR browser, such as `firefox.exe` and `tor.exe`, were also created, indicating that the browser launched successfully.
+- **Timestamp:** `2025-04-08T18:21:52.3744615Z`
+- **Event:** User "azurelab" opened the TOR browser. Subsequent processes associated with TOR browser, such as `firefox.exe` and `tor.exe`, were also created, indicating that the browser launched successfully.
 - **Action:** Process creation of TOR browser-related executables detected.
-- **File Path:** `C:\Users\employee\Desktop\Tor Browser\Browser\TorBrowser\Tor\tor.exe`
+- **File Path:** `C:\Users\azurelab\Desktop\Tor Browser\Browser\TorBrowser\Tor\tor.exe`
 
 ### 4. Network Connection - TOR Network
 
-- **Timestamp:** `2024-11-08T22:18:01.1246358Z`
+- **Timestamp:** `2025-04-08T18:21:52.3744615Z`
 - **Event:** A network connection to IP `176.198.159.33` on port `9001` by user "employee" was established using `tor.exe`, confirming TOR browser network activity.
 - **Action:** Connection success.
 - **Process:** `tor.exe`
-- **File Path:** `c:\users\employee\desktop\tor browser\browser\torbrowser\tor\tor.exe`
+- **File Path:** `C:\Users\azurelab\Desktop\Tor Browser\Browser\TorBrowser\Tor\tor.exe`
 
 ### 5. Additional Network Connections - TOR Browser Activity
 
