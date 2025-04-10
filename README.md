@@ -27,19 +27,20 @@ Management suspects that some employees may be using TOR browsers to bypass netw
 
 ### 1. Searched the `DeviceFileEvents` Table
 
-Searched for any file that had the string "tor" in it and discovered what looks like the user "employee" downloaded a TOR installer, did something that resulted in many TOR-related files being copied to the desktop, and the creation of a file called `tor-shopping-list.txt` on the desktop at `2025-03-27T15:09:52.4632623Z`. These events began at `2025-03-27T15:09:52.4632623Z`.
+Searched for any file that had the string `tor` in it and discovered what looks like the user `azurelab` downloaded a TOR installer, did something that resulted in many TOR-related files being copied to the desktop, and the creation of a file called `tor-shopping-list.txt` on the desktop at `2025-04-08T19:18:41.9897782Z`. These events began at `2025-04-08T18:20:49.4108717Z`.
 
 **Query used to locate events:**
 
 ```kql
 DeviceFileEvents
-| where DeviceName == "network-vm-slow"
+| where DeviceName == "tor-network"
 | where FileName contains "tor"
-| where Timestamp >= datetime(2025-03-27T15:09:52.4632623Z)
+| where Timestamp >= datetime(2025-04-08T18:20:49.4108717Z)
 | order by Timestamp desc 
 | project Timestamp, DeviceName, ActionType, FileName, FolderPath
 ```
-![image](https://github.com/user-attachments/assets/22a8b090-0ef4-4ef3-8e2d-763f88824a62)
+![image](https://github.com/user-attachments/assets/5907a04d-0469-41b0-ac56-5240f837dd0b)
+
 
 
 ---
